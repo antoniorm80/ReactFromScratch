@@ -1,25 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
+import { CssBaseline, makeStyles } from '@material-ui/core';
 import './App.css';
+import Menu from "./Layout/Menu";
+import Header from "./Layout/Header";
+
+const Styles = makeStyles({
+  appMain: {
+    paddingLeft: '250px',
+    width: '100%',
+    //height: '500px',
+    //backgroundColor: "green",
+    //marginRight: '50px',
+    
+  }
+})
+
 
 function App() {
+  const classes = Styles();
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Menu/>
+      <div className={classes.appMain}> 
+          <Header/>
+          Este es el contenido donde irán los controles...
+      </div>
+      <CssBaseline/>
+    </>
   );
 }
 
