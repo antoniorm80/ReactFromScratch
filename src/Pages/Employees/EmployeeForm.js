@@ -1,8 +1,8 @@
 import React  from 'react';
 import { Grid  } from '@material-ui/core';
 import Controls from "../../Components/Controls/Controls.js";
-
 import { UseForm, Form } from "./../../Components/useForm";
+import * as EmployeeService from "../../Services/EmployeeService";
 
 
 const genderItems = [
@@ -59,6 +59,26 @@ export default function EmployeeForm() {
                     onChange={handleInputChange}
                     items={genderItems}            
                />
+               <Controls.Select 
+                    name="departmentId"
+                    label="Department"
+                    value={values.departmentId}
+                    onChange={handleInputChange}
+                    options={EmployeeService.getDepartmentCollection()}
+                /> 
+                <Controls.DatePicker 
+                    name="hireDate"
+                    label="Hire Date"
+                    value={values.hireDate}
+                    onChange={handleInputChange}
+                />
+                <Controls.Checkbox 
+                    name="isPermanent"
+                    label="Permanent Employee"
+                    value={values.isPermanent}
+                    onChange={handleInputChange}
+                />
+
               </Grid>
             </Grid>
         </Form>          
