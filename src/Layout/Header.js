@@ -1,5 +1,5 @@
-import React from 'react'
-import { AppBar, Toolbar, Badge, Grid, IconButton, InputBase, makeStyles } from '@material-ui/core'
+import React, { useState } from 'react'
+import { AppBar, Toolbar, Badge, Grid, IconButton, InputBase, makeStyles  } from '@material-ui/core'
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
@@ -8,7 +8,7 @@ import SearchIcon from '@material-ui/icons/Search';
 const Styles = makeStyles({
     root: {
         backgroundColor: '#fff',
-        transform: 'translateZ(0)'
+        //transform: 'translateZ(0)'
     },
     searchInput: {
         opacity: '0.6',
@@ -56,8 +56,7 @@ export default function Header() {
                          <Badge>
                             <PowerSettingsNewIcon fontSize="small" />
                         </Badge>   
-                        </IconButton>
-                        
+                        </IconButton>                        
                     </Grid>
               </Grid>
          </Toolbar>
