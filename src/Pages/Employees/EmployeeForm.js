@@ -42,12 +42,23 @@ export default function EmployeeForm() {
                     label="Full Name"
                     value={values.fullName}
                     onChange={handleInputChange}
-                  />
-                  
+                  />                  
                   <Controls.Input
                     label="Email"
                     name="email"
                     value={values.email}
+                    onChange={handleInputChange}
+                  />
+                   <Controls.Input
+                    label="Mobile"
+                    name="mobile"
+                    value={values.mobile}
+                    onChange={handleInputChange}
+                  />
+                   <Controls.Input
+                    label="City"
+                    name="city"
+                    value={values.city}
                     onChange={handleInputChange}
                   />
               </Grid>
@@ -78,7 +89,16 @@ export default function EmployeeForm() {
                     value={values.isPermanent}
                     onChange={handleInputChange}
                 />
-
+                <div>
+                    <Controls.Button
+                     type="submit" 
+                     text="Submit"
+                    />
+                    <Controls.Button
+                     text="Reset"
+                     color="default"
+                    />
+                </div>
               </Grid>
             </Grid>
         </Form>          
