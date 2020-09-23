@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { TextField, Grid, FormLabel, RadioGroup, FormControl, FormControlLabel, Radio } from '@material-ui/core';
-//import Controls from "./../../Components/Controls/Controls";
+import React  from 'react';
+import { Grid  } from '@material-ui/core';
 import Controls from "../../Components/Controls/Controls.js";
 
 import { UseForm, Form } from "./../../Components/useForm";
@@ -29,7 +28,6 @@ export default function EmployeeForm() {
   
     const {
         values, 
-        setValues,
         handleInputChange
     } = UseForm(initialFormValues);
 

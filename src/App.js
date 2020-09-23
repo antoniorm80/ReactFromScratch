@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { Button, createMuiTheme, CssBaseline, FormControlLabel, makeStyles, Paper, Switch, ThemeProvider, Typography } from '@material-ui/core';
+import React  from 'react';
+import { createMuiTheme, CssBaseline, makeStyles, ThemeProvider } from '@material-ui/core';
 import './App.css';
 import Menu from "./Layout/Menu";
 import Header from "./Layout/Header";
-import PageHeader from "./Layout/PageHeader";
 import Employees from './Pages/Employees/Employees';
 
 

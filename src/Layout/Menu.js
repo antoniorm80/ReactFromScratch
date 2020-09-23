@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles, withStyles } from '@material-ui/core';
+import {  withStyles } from '@material-ui/core';
 
 
 // const Styles =  makeStyles({
@@ -31,7 +31,7 @@ const Styles = {
 const Menu = (props) => {
     // const classes = Styles();
     const { classes } = props
-    console.log(classes)
+    //console.log(classes)
 
     return (
         <div className={classes.sideMenu}>
