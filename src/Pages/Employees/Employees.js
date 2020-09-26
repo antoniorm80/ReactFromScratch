@@ -6,7 +6,11 @@ import { InputAdornment, makeStyles, Paper, TableBody, TableCell, TableRow, Tool
 import UseTable from "../../Components/useTable";
 import * as EmployeeService from "../../Services/EmployeeService";
 import Controls from "../../Components/Controls/Controls";
+import AddIcon from "@material-ui/icons/Add";
 import { Search } from '@material-ui/icons';
+import Popup from "../../Components/Popup";
+import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
+import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles(theme => ({
     pageContent: {
@@ -15,6 +19,10 @@ const useStyles = makeStyles(theme => ({
     },
     searchInput: {
         width: '30%'
+    },
+    newButton: {
+        position: 'absolute',
+        right: '10px',        
     }
 }))
 
@@ -22,14 +30,17 @@ const headCells = [
     {id: 'fullName', label:'Employee Name'},
     {id: 'email', label:'Email Address (Personal)'},
     {id: 'mobile', label:'Mobile Number'},
-    {id: 'department', label:'Department', disableSorting:true},
+    {id: 'department', label:'Department'},
+    {id: 'actions', label:'Actions', disableSorting:true}
 ]
 
 export default function Employees() {
 
     const classes = useStyles();
+    const [recordForEdit, setRecordForEdit] = useState(null)
     const [records, setRecords] = useState(EmployeeService.getAllEmployees());
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
+    const [openPopup, setOpenPopup] = useState(false)
 
    
     const { 
@@ -51,6 +62,22 @@ export default function Employees() {
          })
      }
 
+     const addOrEdit = (employee, resetForm) => {
+        if (employee.id === 0)
+            EmployeeService.insertEmployees(employee);
+            else
+            EmployeeService.updateEmployees(employee);
+        resetForm();
+        setRecordForEdit(null)
+        setOpenPopup(false)
+        setRecords(EmployeeService.getAllEmployees())
+     }
+
+    const openInPopup = item => {
+        setRecordForEdit(item);
+        setOpenPopup(true)
+    }
+
     return (
         <>
             <PageHeader
@@ -58,8 +85,7 @@ export default function Employees() {
             subTitle="Form design with validation"
             icon={<PeopleOutlineOutlinedIcon fontSize="large" />}
             />
-            <Paper className={classes.pageContent}>
-                {/* <EmployeeForm />   */}
+            <Paper className={classes.pageContent}>               
                 <Toolbar>
                     <Controls.Input
                         label="Search Employees"
@@ -70,6 +96,13 @@ export default function Employees() {
                                     <Search />
                                 </InputAdornment>)
                         }}
+                    />
+                    <Controls.Button
+                        text="Add New"
+                        variant= "outlined"
+                        startIcon = {<AddIcon />}
+                        className={classes.newButton}
+                        onClick={()=> {setOpenPopup(true); setRecordForEdit(null);}}
                     />
                 </Toolbar>
                 <TblContainer>
@@ -82,13 +115,33 @@ export default function Employees() {
                                     <TableCell> {item.email} </TableCell>
                                     <TableCell> {item.mobile} </TableCell>
                                     <TableCell> {item.department} </TableCell>
+                                    <TableCell> 
+                                        <Controls.ActionButton
+                                            color="primary">
+                                            <EditOutlinedIcon fontSize="small"
+                                                onClick={()=> {openInPopup(item)}} />
+                                        </Controls.ActionButton>
+                                        <Controls.ActionButton
+                                            color="secondary">
+                                            <CloseIcon fontSize="small" />
+                                        </Controls.ActionButton>                                    </TableCell>
                                 </TableRow>)
                             )
                         }
                     </TableBody>
                 </TblContainer>
                 <TblPagination/>
-            </Paper>            
+            </Paper>  
+            <Popup
+                title="Employee Form"
+                openPopup={openPopup}
+                setOpenPopup={setOpenPopup}
+            >
+            <EmployeeForm 
+                recordForEdit={recordForEdit}
+                addOrEdit={addOrEdit} 
+            />  
+            </Popup>          
         </>
         
     )
