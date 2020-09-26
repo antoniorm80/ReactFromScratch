@@ -5,7 +5,6 @@ import { UseForm, Form } from "./../../Components/useForm";
 import * as EmployeeService from "../../Services/EmployeeService";
 
 
-
 const genderItems = [
     { id: 'male', title: 'Male'},
     { id: 'female', title: 'Female'},
@@ -22,7 +21,6 @@ const initialFormValues = {
     departmentId:'',
     hireDate: new Date(),
     isPermanent: false,
-
 }
 
 export default function EmployeeForm() {
@@ -47,21 +45,20 @@ export default function EmployeeForm() {
 
     const {
         values,
-        //setValues,
+        setValues,
         errors,
         setErrors,
         handleInputChange,
         resetForm
     } = UseForm(initialFormValues, true, Validate);
 
-   const handleSubmit = e => {
+    const handleSubmit = e => {
        e.preventDefault()
        if (Validate()){
             EmployeeService.insertEmployees(values)
             resetForm()
-       }
-            
-   }
+       }            
+    }
 
     return (
         <Form onSubmit={handleSubmit}>

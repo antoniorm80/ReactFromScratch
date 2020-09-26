@@ -11,7 +11,7 @@ const theme = createMuiTheme({
     // type:  darkMode ? "dark": "light",
     primary: {
       main: '#3f51b5',
-      light: '#7986cb'
+      light: '#bbdefb'
     },
     secondary: {
      main: '#f50057',
@@ -34,7 +34,7 @@ const theme = createMuiTheme({
     }
   },
   shape: {
-   borderRadius: '12px'
+   borderRadius: '5px'
   }
 })
 
